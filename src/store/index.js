@@ -19,10 +19,10 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    FETCH_RESULTS({commit}) {
-          return axios.get('https://apis.justwatch.com/content/titles/en_US/popular?body={"page_size":20,"page":1,"content_types":["movie"]}')
-              .then( (response) => {commit("SET_RESULTS", response.data.items);
-          })
+    FETCH_RESULTS({commit}, payload) {
+          return axios.get(`https://apis.justwatch.com/content/titles/en_US/popular?body={"page_size":20,"page":1,"query":"${payload}","content_types":["movie"]}`)
+              .then( (response) => {commit("SET_RESULTS", response.data.items)
+          });
     }
   },
   modules: {},

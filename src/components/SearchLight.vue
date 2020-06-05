@@ -4,7 +4,7 @@
       <h1>Search Light</h1>
     </div>
     <div>
-      <input type="search" placeholder="Movie Title..." v-model="searchTerm" />
+      <input type="search" placeholder="Movie Title..." @input="handleInput($event.target.value)" />
     </div>
     <ul v-for="(item, index) in results" :key="index">
       <li>{{ item.title }}</li>
@@ -17,26 +17,19 @@ import {mapGetters} from "vuex";
 
 export default {
   name: "SearchLight",
-  data() {
-    return {
-      searchTerm: ""
+  methods: {
+    handleInput(value) {
+      if (value === "") {
+        this.$store.state.results = null
+      } else {
+        this.$store.dispatch("FETCH_RESULTS", `${value}`);
+      }
     }
-  },
-  created() {
-    this.$store.dispatch("FETCH_RESULTS");
   },
   computed: {
     ...mapGetters(["getResults"]),
     results() {
-      const results = this.$store.getters.getResults;
-      if (this.searchTerm === "") {
-        return null
-      } else {
-        const searchTermLower = this.searchTerm.toLowerCase();
-        return results.filter(movie => {
-          return movie.title.toLowerCase().includes(searchTermLower);
-        });
-      }
+      return this.$store.getters.getResults;
     }
   },
 };
