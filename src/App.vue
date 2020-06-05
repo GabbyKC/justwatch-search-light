@@ -10,22 +10,22 @@ import SearchLight from "./components/SearchLight.vue";
 export default {
   name: "App",
   components: {
-    SearchLight
-  }
+    SearchLight,
+  },
 };
 </script>
 
 <style>
-  * {
-    box-sizing: border-box;
-  }
+* {
+  box-sizing: border-box;
+}
 
-  #app {
-    font-family: Geneva, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    width: 80%;
-    margin: 2.5rem auto;
-    color: #154e3b;
-  }
+#app {
+  font-family: Geneva, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 80%;
+  margin: 2.5rem auto;
+  color: #154e3b;
+}
 </style>
